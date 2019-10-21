@@ -13,12 +13,12 @@
 
 
 // Defined (or not) in the .in file by cmake
-#define BTDAPI_LOG_METHODS
-#define BTDAPI_LOG_LOADING
-#define BTDAPI_LOG_DEBUG
-#define BTDAPI_LOG_WARNING
-#define BTDAPI_LOG_INFO
-#define BTDAPI_LOG_VERBOSE
+#cmakedefine BTDAPI_LOG_METHODS
+#cmakedefine BTDAPI_LOG_LOADING
+#cmakedefine BTDAPI_LOG_DEBUG
+#cmakedefine BTDAPI_LOG_WARNING
+#cmakedefine BTDAPI_LOG_INFO
+#cmakedefine BTDAPI_LOG_VERBOSE
 
 
 #define PRINTE(x) (std::cerr << x << std::endl)
