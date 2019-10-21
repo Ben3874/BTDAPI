@@ -19,13 +19,20 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
 VERSION ${${PROJECT_NAME}_VERSION_MAJOR}.${${PROJECT_NAME}_VERSION_MINOR}
 )
 
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/src/Core/log.hpp.in ${CMAKE_CURRENT_SOURCE_DIR}/src/Core/log.hpp)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/include/${PROJECT_NAME}/Core/log.hpp.in ${CMAKE_CURRENT_SOURCE_DIR}/include/${PROJECT_NAME}/Core/log.hpp)
 
 target_sources(${PROJECT_NAME}
 	# List .cpp and .hpp files here.
+	PUBLIC
+	include/${PROJECT_NAME}/Steam/steamUtils.hpp
+
+	include/${PROJECT_NAME}/Core/stdn.hpp
+	include/${PROJECT_NAME}/Core/log.hpp
+	include/${PROJECT_NAME}/Core/core.hpp
+
 	PRIVATE
-	src/Dummy.cpp
-	src/Core/log.hpp
+
+	src/Steam/steamUtils.cpp
 )
 
 target_include_directories(${PROJECT_NAME}

@@ -1,0 +1,4 @@
+A non exhuastive list of questions I've had that I've answered.
+
+Q: What's a size_t?
+A: The size of a programs pointers.
