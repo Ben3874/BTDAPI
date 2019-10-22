@@ -26,13 +26,18 @@ target_sources(${PROJECT_NAME}
 	PUBLIC
 	include/${PROJECT_NAME}/Steam/steamUtils.hpp
 
+	include/${PROJECT_NAME}/Memory/MemUtils.hpp
+	include/${PROJECT_NAME}/Memory/LoadMemory.hpp
+
 	include/${PROJECT_NAME}/Core/stdn.hpp
 	include/${PROJECT_NAME}/Core/log.hpp
 	include/${PROJECT_NAME}/Core/core.hpp
 
 	PRIVATE
-
+	
 	src/Steam/steamUtils.cpp
+	src/Memory/LoadMemory.cpp
+	src/Memory/MemUtils.cpp
 )
 
 target_include_directories(${PROJECT_NAME}

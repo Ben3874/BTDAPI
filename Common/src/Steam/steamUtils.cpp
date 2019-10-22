@@ -41,7 +41,7 @@ String SteamUtils::WindowsGetGameDirectory(uint64 appid, std::string gameName) {
 		ErrorCode == ERROR_PATH_NOT_FOUND || 
 		ErrorCode == ERROR_BAD_PATHNAME) {
 
-		LOGW("WARNING: " << TO_STRING(appid) << " not found!");
+		LOGW("WARNING: " << gameName << " not found!");
 		return "";
 	}
 
@@ -66,7 +66,7 @@ String SteamUtils::WindowsGetGameDirectory(uint64 appid, std::string gameName) {
 	}
 
 	if (installed != true) {
-		LOGW("WARNING: " << TO_STRING(appid) << " is not installed!");
+		LOGW("WARNING: " << gameName << " is not installed!");
 		return "";
 	}
 
@@ -200,7 +200,7 @@ String SteamUtils::WindowsGetGameDirectory(uint64 appid, std::string gameName) {
 	}
 
 	if (GameDirectory == "") {
-		LOGW("WARNING: Game directory not found!");
+		LOGW("WARNING: " << gameName << "'s directory not found!");
 		return "";
 	}
 
