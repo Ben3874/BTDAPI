@@ -1,0 +1,1 @@
+// Will no compile anything without a .cpp

@@ -9,7 +9,7 @@
 
 class LoadMemory {
 public:
-	DLL_PUBLIC static HANDLE GetProcessPointer(String procName);
-	DLL_PUBLIC static HMODULE GetModulePointer(HANDLE ProcessHandle, String moduleName);
+	static HANDLE GetProcessPointer(String procName);
+	static HMODULE GetModulePointer(HANDLE ProcessHandle, String moduleName);
 
 };

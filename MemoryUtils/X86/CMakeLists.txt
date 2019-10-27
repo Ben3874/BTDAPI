@@ -3,7 +3,7 @@
 #
 # BTD Command Line 
 #
-set(PROJECT_NAME MemoryCommon)
+set(PROJECT_NAME MEMX86)
 
 set(${PROJECT_NAME}_VERSION_MAJOR 1)
 set(${PROJECT_NAME}_VERSION_MINOR 0)
@@ -21,18 +21,18 @@ VERSION ${${PROJECT_NAME}_VERSION_MAJOR}.${${PROJECT_NAME}_VERSION_MINOR}
 target_sources(${PROJECT_NAME}
 	# List .cpp and .hpp files here.
 	PRIVATE
-	src/LoadMemory.cpp
+	src/Dummy.cpp
 	PUBLIC
-	../../../include/Common/Memory/Common/LoadMemory.hpp
-	../../../include/Common/Memory/Common/memory.hpp
+	include/${PROJECT_NAME}/LoadMemory.hpp
 )
 
 target_include_directories(${PROJECT_NAME}
-PUBLIC ../../../include/Common/Memory/Common
+PUBLIC include
 PRIVATE src
 )
 
 target_link_libraries(${PROJECT_NAME}
 Common
+MemCommon
 )
 

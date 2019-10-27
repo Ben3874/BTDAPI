@@ -8,8 +8,6 @@ set(PROJECT_NAME Common)
 set(${PROJECT_NAME}_VERSION_MAJOR 1)
 set(${PROJECT_NAME}_VERSION_MINOR 0)
 
-add_subdirectory("src")
-
 if(${SOLUTION_NAME}_VERBOSE)
 	message(STATUS "Configuring ${PROJECT_NAME} ${${PROJECT_NAME}_VERSION_MAJOR}.${${PROJECT_NAME}_VERSION_MINOR}")
 endif()
