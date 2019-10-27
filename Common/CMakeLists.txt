@@ -8,6 +8,7 @@ set(PROJECT_NAME Common)
 set(${PROJECT_NAME}_VERSION_MAJOR 1)
 set(${PROJECT_NAME}_VERSION_MINOR 0)
 
+add_subdirectory("src")
 
 if(${SOLUTION_NAME}_VERBOSE)
 	message(STATUS "Configuring ${PROJECT_NAME} ${${PROJECT_NAME}_VERSION_MAJOR}.${${PROJECT_NAME}_VERSION_MINOR}")
@@ -31,21 +32,15 @@ target_sources(${PROJECT_NAME}
 
 	include/${PROJECT_NAME}/Steam/steamUtils.hpp
 
-	include/${PROJECT_NAME}/Memory/MemUtils.hpp
-	include/${PROJECT_NAME}/Memory/LoadMemory.hpp
-	include/${PROJECT_NAME}/Memory/memory.hpp
-
-
 
 	PRIVATE
 	
 	src/Steam/steamUtils.cpp
-	src/Memory/LoadMemory.cpp
-	src/Memory/MemUtils.cpp
 )
 
 target_include_directories(${PROJECT_NAME}
 PUBLIC include/${PROJECT_NAME}
 PRIVATE src
 )
+
 
