@@ -39,7 +39,7 @@ HANDLE LoadMemory::GetProcessPointer(String procName) {
 		TCHAR ProcName[MAX_PATH] = TEXT("<unknown>");
 
 		HANDLE hproc = OpenProcess(
-			PROCESS_QUERY_INFORMATION,
+			PROCESS_QUERY_INFORMATION | PROCESS_VM_READ | PROCESS_VM_OPERATION,
 			FALSE, // Do not inherit handle
 			ProcIds[i]
 		);

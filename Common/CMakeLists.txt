@@ -24,14 +24,18 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/include/${PROJECT_NAME}/Core/log.hpp.
 target_sources(${PROJECT_NAME}
 	# List .cpp and .hpp files here.
 	PUBLIC
+	include/${PROJECT_NAME}/Core/platform.hpp
+	include/${PROJECT_NAME}/Core/stdn.hpp
+	include/${PROJECT_NAME}/Core/log.hpp
+	include/${PROJECT_NAME}/Core/core.hpp
+
 	include/${PROJECT_NAME}/Steam/steamUtils.hpp
 
 	include/${PROJECT_NAME}/Memory/MemUtils.hpp
 	include/${PROJECT_NAME}/Memory/LoadMemory.hpp
+	include/${PROJECT_NAME}/Memory/memory.hpp
 
-	include/${PROJECT_NAME}/Core/stdn.hpp
-	include/${PROJECT_NAME}/Core/log.hpp
-	include/${PROJECT_NAME}/Core/core.hpp
+
 
 	PRIVATE
 	

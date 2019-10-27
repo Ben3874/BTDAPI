@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Steam/steamUtils.hpp"
+#include "Memory/memory.hpp"
 
 String FormatBool(bool Bool) {
 	// Uses ANSI escape codes
@@ -11,6 +12,8 @@ String FormatBool(bool Bool) {
 	}
 
 };
+
+const uint32 BASEPTR = 0x00884280;
 
 int main(int argc, char* argv[]) {
 
@@ -43,6 +46,24 @@ int main(int argc, char* argv[]) {
 	std::cout << "Success! Initialised succesfully.\n";
 	std::cout << "Type help for a list of commands\n";
 
+	HANDLE Btd5Handle = LoadMemory::GetProcessPointer(BTD5PROCNAME);
+	HMODULE Btd5Mod = LoadMemory::GetModulePointer(Btd5Handle, BTD5PROCNAME);
+
+	WindowsMemory Memory(Btd5Handle, Btd5Mod);
+
+	const std::vector<uint32> FirstChain = { 0x0, 0x74 };
+	const std::vector<uint32> LastChain = { 0x0, 0x74 };
+
+	IntPtr FirstPtr = Memory.IntChainFromOffset(BASEPTR, FirstChain);
+	IntPtr LastPtr = Memory.IntChainFromOffset(BASEPTR, LastChain);
+
+	for (;;) {
+		IntPtr First = FirstPtr + 0x4;
+		IntPtr Last = LastPtr + 0x8;
+		std::cout << "NumBloons: " << (First - Last / 4) << "\n";
+	}
+
+	
 
 
 
