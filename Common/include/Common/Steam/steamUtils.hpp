@@ -14,7 +14,7 @@
 class SteamUtils {
 public:
 
-	DLL_PUBLIC static String WindowsGetGameDirectory(uint64 appid, std::string gameName);
+	DLL_PUBLIC static String WindowsGetGameDirectory(u64 appid, String gameName);
 
 private:
 

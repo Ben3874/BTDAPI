@@ -25,6 +25,5 @@ add_subdirectory("BTDBAPI")
 add_subdirectory("BTD5API")
 add_subdirectory("BTD6API")
 add_subdirectory("BTDCL")
-add_subdirectory("MemoryUtils")
 
 # TODO: Add tests and install targets if needed.

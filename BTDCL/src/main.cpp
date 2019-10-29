@@ -1,6 +1,6 @@
 #include <iostream>
 #include "Steam/steamUtils.hpp"
-#include "MEMX86/LoadMemory.hpp"
+#include "Memory/memory.hpp"
 
 String FormatBool(bool Bool) {
 	// Uses ANSI escape codes
@@ -13,7 +13,7 @@ String FormatBool(bool Bool) {
 
 };
 
-const uint32 BASEPTR = 0x00884280;
+const u64 BASEPTR = 0x00884280;
 
 int main(int argc, char* argv[]) {
 
@@ -49,6 +49,24 @@ int main(int argc, char* argv[]) {
 	HANDLE Btd5Handle = LoadMemory::GetProcessPointer(BTD5PROCNAME);
 	HMODULE Btd5Mod = LoadMemory::GetModulePointer(Btd5Handle, BTD5PROCNAME);
 
+	for (;;) {
+		
+		WindowsMemory BTD5(Btd5Handle, Btd5Mod);
+
+		u32 firstPtrTest = BTD5.OffsetFromMod((u32)0x0088'4280);
+		u32 BaseAddr;
+		BTD5.Read((u32)firstPtrTest, &BaseAddr);
+
+
+		const std::vector<u32> OffsetList = { 0x0, 0x74, 0x4, 0x0, 0x26C };
+
+		u32 Dist = (u32)BTD5.MultiLevelPtr(BaseAddr, OffsetList);
+		float dis1 = reinterpret_cast<float&>(Dist);
+		
+
+
+		int x = 5;
+	}
 	
 
 

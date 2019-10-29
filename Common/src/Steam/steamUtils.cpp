@@ -18,7 +18,7 @@ String SteamUtils::convertUnixPathToWindows(String unixPath) {
 	return unixPath;
 }
 
-String SteamUtils::WindowsGetGameDirectory(uint64 appid, std::string gameName) {
+String SteamUtils::WindowsGetGameDirectory(u64 appid, std::string gameName) {
 
 	BOOL ErrorCode;
 	DWORD KeyType;
@@ -137,9 +137,9 @@ String SteamUtils::WindowsGetGameDirectory(uint64 appid, std::string gameName) {
 
 		// Get position of all quotes
 
-		std::vector<int64> QuoteIndexes;
+		std::vector<u32> QuoteIndexes;
 
-		for (int64 i = 0; i < line.length(); i++) {
+		for (u32 i = 0; i < line.length(); i++) {
 
 			if (line[i] == '"') {
 				QuoteIndexes.push_back(i);

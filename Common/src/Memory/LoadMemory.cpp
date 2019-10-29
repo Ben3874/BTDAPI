@@ -1,6 +1,6 @@
 #include "Core/core.hpp"
 #include <vector>
-#include "MemCommon/LoadMemory.hpp"
+#include "Memory/memory.hpp"
 
 #define WIN32_LEAN_AND_MEAN
 #include <Windows.h>

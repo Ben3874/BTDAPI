@@ -30,10 +30,16 @@ target_sources(${PROJECT_NAME}
 
 	include/${PROJECT_NAME}/Steam/steamUtils.hpp
 
+	include/${PROJECT_NAME}/Memory/LoadMemory.hpp
+	include/${PROJECT_NAME}/Memory/MemoryUtils.hpp
+	include/${PROJECT_NAME}/Memory/memory.hpp
 
 	PRIVATE
 	
 	src/Steam/steamUtils.cpp
+
+	src/Memory/LoadMemory.cpp
+	src/Memory/MemoryUtils.cpp
 )
 
 target_include_directories(${PROJECT_NAME}
