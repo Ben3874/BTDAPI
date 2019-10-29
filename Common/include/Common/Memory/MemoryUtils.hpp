@@ -21,8 +21,13 @@ private:
 public:
 	DLL_PUBLIC WindowsMemory(HANDLE ProcessHandle, HMODULE ModuleHandle);
 
+	// Returns offset
 	DLL_PUBLIC inline u32 OffsetFromMod(u32 offset);
 	DLL_PUBLIC inline u64 OffsetFromMod(u64 offset);
+
+	// Returns dereffed offset.
+	DLL_PUBLIC inline u32 PtrFromMod(u32 offset);
+	DLL_PUBLIC inline u64 PtrFromMod(u64 offset);
 
 	// Buffer must be allocated before calling
 	DLL_PUBLIC void ReadMemory(u64 Offset, u8* Buffer, u64 Len);
@@ -30,19 +35,10 @@ public:
 	DLL_PUBLIC inline void Read(u32 Addr, u32* Ret);
 	DLL_PUBLIC inline void Read(u64 Addr, u64* Ret);
 
-
-	// Raw Derref 32 bit Addr
 	DLL_PUBLIC inline u32 Deref(u32 Addr);
-
-	// Deref 32 bit ptr
 	DLL_PUBLIC inline u32 Deref(u32* Addr);
-
-	// Raw Derref 64 bit Addr
 	DLL_PUBLIC inline u64 Deref(u64 Addr);
-
-	// Deref 64 bit ptr
 	DLL_PUBLIC inline u64 Deref(u64* Addr);
-
 
 
 	DLL_PUBLIC TL32 MultiLevelPtr(u32 BaseAddr, std::vector<u32> Offsets);

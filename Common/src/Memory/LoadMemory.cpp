@@ -75,7 +75,7 @@ HANDLE LoadMemory::GetProcessPointer(String procName) {
 		}
 	}
 	
-	LOGW("WARNING: " << procName << " not found!");
+	//LOGW("WARNING: " << procName << " not found!");
 
 	return INVALID_HANDLE_VALUE;
 }

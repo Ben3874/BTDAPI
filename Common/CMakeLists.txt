@@ -33,6 +33,7 @@ target_sources(${PROJECT_NAME}
 	include/${PROJECT_NAME}/Memory/LoadMemory.hpp
 	include/${PROJECT_NAME}/Memory/MemoryUtils.hpp
 	include/${PROJECT_NAME}/Memory/memory.hpp
+	include/${PROJECT_NAME}/Memory/MappedVector.hpp
 
 	PRIVATE
 	

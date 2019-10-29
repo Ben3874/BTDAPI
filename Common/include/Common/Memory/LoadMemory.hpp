@@ -6,6 +6,7 @@
 
 #define BTD6PROCNAME "BloonsTD6.exe"
 #define BTD5PROCNAME "BTD5-Win.exe"
+#define BTDBPROCNAME "Battles-Win.exe"
 
 class LoadMemory {
 public:

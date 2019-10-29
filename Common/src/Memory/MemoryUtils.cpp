@@ -13,6 +13,16 @@ u64 WindowsMemory::OffsetFromMod(u64 offset) {
 	return (u64)(Hmod) + offset;
 }
 
+u32 WindowsMemory::PtrFromMod(u32 offset) {
+	u32 BaseAddr = (u32)(Hmod)+offset;
+	return Deref(BaseAddr);
+}
+
+u64 WindowsMemory::PtrFromMod(u64 offset) {
+	u64 BaseAddr = (u64)(Hmod)+offset;
+	return Deref(BaseAddr);
+}
+
 void WindowsMemory::ReadMemory(u64 Addr, u8* Buffer, u64 Len) {
 	if (ReadProcessMemory(
 		Hproc,
@@ -68,4 +78,16 @@ TL32 WindowsMemory::MultiLevelPtr(u32 BasePtr, std::vector<u32> Offsets) {
 
 	return (TL32)WorkingPtr;
 	
+}
+
+TL64 WindowsMemory::MultiLevelPtr(u64 BasePtr, std::vector<u64> Offsets) {
+
+	u64 WorkingPtr = BasePtr;
+
+	for (u8 i = 0; i < Offsets.size(); i++) {
+		WorkingPtr = Deref(WorkingPtr + Offsets[i]);
+	}
+
+	return (TL64)WorkingPtr;
+
 }

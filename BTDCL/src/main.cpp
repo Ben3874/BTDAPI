@@ -13,12 +13,60 @@ String FormatBool(bool Bool) {
 
 };
 
+HANDLE Btd5Handle;
+HANDLE BtdBHandle;
+HANDLE Btd6Handle;
+
+
+void Run() {
+
+	Btd5Handle = LoadMemory::GetProcessPointer(BTD5PROCNAME);
+	BtdBHandle = LoadMemory::GetProcessPointer(BTDBPROCNAME);
+	Btd6Handle = LoadMemory::GetProcessPointer(BTD6PROCNAME);
+
+	bool AnyGameRunning = false;
+
+	bool BTD5Running = false;
+	if (Btd5Handle != INVALID_HANDLE_VALUE) {
+		BTD5Running = true;
+	}
+
+	bool BTDBRunning = false;
+	if (BtdBHandle != INVALID_HANDLE_VALUE) {
+		BTDBRunning = true;
+	}
+
+	bool BTD6Running = false;
+	if (Btd6Handle != INVALID_HANDLE_VALUE) {
+		BTD6Running = true;
+	}
+
+	AnyGameRunning = AnyGameRunning | BTD5Running | BTDBRunning | BTD6Running;
+
+	if (AnyGameRunning) {
+		cout << "BTD Game is running... Attempting to attach...\n ";
+		if (BTD5Running) {
+			cout << "Bloons TD 5 is currently running...\n";
+			}
+		if (BTDBRunning) {
+			cout << "Bloons TDB is currently running...\n";
+		}
+		if (BTD6Running) {
+			cout << "Bloons TD6 is currently running...\n";
+		}
+
+	}
+	else {
+		cout << "No game is running...\n";
+	}
+}
+
 const u64 BASEPTR = 0x00884280;
 
 int main(int argc, char* argv[]) {
 
-	std::cout << "===Bloons TD API Command Line===\n";
-	std::cout << "Detecting BTD games...\n";
+	cout << "===Bloons TD API Command Line===\n";
+	cout << "Detecting BTD game installations...\n";
 
 	String BTD5Dir = SteamUtils::WindowsGetGameDirectory(BTD5AppId, BTD5Name);
 	String BTDBDir = SteamUtils::WindowsGetGameDirectory(BTDBAppId, BTDBName);
@@ -39,14 +87,20 @@ int main(int argc, char* argv[]) {
 		BTD6Detected = true;
 	}
 
-	std::cout << "BTD5 Detected: " << FormatBool(BTD5Detected) << "\n";
-	std::cout << "BTDB Detected: " << FormatBool(BTDBDetected) << "\n";
-	std::cout << "BTD6 Detected: " << FormatBool(BTD6Detected) << "\n";
+	cout << "BTD5 Detected: " << FormatBool(BTD5Detected) << "\n";
+	cout << "BTDB Detected: " << FormatBool(BTDBDetected) << "\n";
+	cout << "BTD6 Detected: " << FormatBool(BTD6Detected) << "\n";
 
-	std::cout << "Success! Initialised succesfully.\n";
-	std::cout << "Type help for a list of commands\n";
+	cout << "Success! Initialised succesfully.\n";
 
-	HANDLE Btd5Handle = LoadMemory::GetProcessPointer(BTD5PROCNAME);
+	cout << "\nChecking if any games are running...\n";
+
+	Run();
+
+
+
+	cout << "Type help for a list of commands\n";
+
 	HMODULE Btd5Mod = LoadMemory::GetModulePointer(Btd5Handle, BTD5PROCNAME);
 
 	for (;;) {
