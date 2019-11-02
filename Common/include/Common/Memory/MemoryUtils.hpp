@@ -12,6 +12,14 @@ typedef u16 TL16;
 typedef u32 TL32;
 typedef u64 TL64;
 
+// Explicit Offset Member. This must be pust inbetween a union.
+#define EXPM(offset, member)                 \
+        struct {    \
+                char pad[offset];                \
+                member;                          \
+        }
+
+
 class WindowsMemory {
 
 private:

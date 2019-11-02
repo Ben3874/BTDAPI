@@ -23,10 +23,17 @@ target_sources(${PROJECT_NAME}
 	PRIVATE
 	src/dummy.cpp
 	src/api.hpp
+	src/base.hpp
+	src/bloons.hpp
+	src/bloons.cpp
 )
 
 target_include_directories(${PROJECT_NAME}
 PUBLIC include/${PROJECT_NAME}
 PRIVATE src
+)
+
+target_link_libraries(${PROJECT_NAME}
+Common
 )
 

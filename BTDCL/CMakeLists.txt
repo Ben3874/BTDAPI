@@ -31,5 +31,6 @@ PRIVATE src
 
 target_link_libraries(${PROJECT_NAME}
 Common
+BTD5API
 )
 

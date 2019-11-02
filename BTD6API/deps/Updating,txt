@@ -1,0 +1,15 @@
+How to update the deps file when the game changes.
+
+Figure out what unity version the BTD6 uses:
+Open BloonsTD6\BloonsTD6_Data\globalgamemanagers in noteapad++
+The first line should contain the version, in this case its "2019.2.5f1"
+
+Download the version:
+First, download Unity Hub, this will let you download any version of unity with what features you want.
+Go to the "Installs" tab on Unity Hub, Click "add" and select the unity version, in this case its "2019.2.5f1".
+If the version is not in the list (In this case it's not), click the "download archive" hyperlink. 
+Find the desired version on the website then click on the 'Unity Hub' button. Ommit the letters when download.
+Eg: 2019.2.5f1 -> 2019.2.5
+On the next screen, make sure to select "Windows Build Support (IL2CPP)".
+Proceed to install the desired unity version.
+
