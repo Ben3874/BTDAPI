@@ -1,8 +1,8 @@
-#include "bloons.hpp"
+#include "BTD5API/api.hpp"
 
 
 Bloon::Bloon(u32 Ptr) {
-	BloonPtr = Ptr;
+	BloonAddr = Ptr;
 }
 
 // 0xA0
@@ -35,8 +35,8 @@ void Bloon::SetBloonTypePtr(BloonType* ptr) {
 
 BloonType Bloon::GetBloonType() {
 	LOGW("WARNING: GetBloonType not yet implemented!");
-	BloonType NulLType;
-	return NulLType;
+	BloonType NullType;
+	return NullType;
 }
 
 // 0x26C

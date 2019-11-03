@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Steam/steamUtils.hpp"
 #include "Memory/memory.hpp"
+#include "BTD5API/api.hpp"
 
 String FormatBool(bool Bool) {
 	// Uses ANSI escape codes
@@ -103,24 +104,28 @@ int main(int argc, char* argv[]) {
 
 	HMODULE Btd5Mod = LoadMemory::GetModulePointer(Btd5Handle, BTD5PROCNAME);
 
-	for (;;) {
-		
-		WindowsMemory BTD5(Btd5Handle, Btd5Mod);
-
-		u32 firstPtrTest = BTD5.OffsetFromMod((u32)0x0088'4280);
-		u32 BaseAddr;
-		BTD5.Read((u32)firstPtrTest, &BaseAddr);
+	WindowsMemory BTD5(Btd5Handle, Btd5Mod);
 
 
-		const std::vector<u32> OffsetList = { 0x0, 0x74, 0x4, 0x0, 0x26C };
 
-		u32 Dist = (u32)BTD5.MultiLevelPtr(BaseAddr, OffsetList);
-		float dis1 = reinterpret_cast<float&>(Dist);
-		
+	//for (;;) {
+	//	
+	//	
+
+	//	u32 firstPtrTest = BTD5.OffsetFromMod((u32)0x0088'4280);
+	//	u32 BaseAddr;
+	//	BTD5.Read((u32)firstPtrTest, &BaseAddr);
 
 
-		int x = 5;
-	}
+	//	const std::vector<u32> OffsetList = { 0x0, 0x74, 0x4, 0x0, 0x26C };
+
+	//	u32 Dist = (u32)BTD5.MultiLevelPtr(BaseAddr, OffsetList);
+	//	float dis1 = reinterpret_cast<float&>(Dist);
+	//	
+
+
+	//	int x = 5;
+	//}
 	
 
 

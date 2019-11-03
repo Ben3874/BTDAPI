@@ -5,12 +5,12 @@
 // THESE ARE JUST THE PARTS I USE
 //
 
-
-template<typename T, typename SizeT>
-class MappedVector {
+// A vector that automaticaly derefs pointers
+template<class T, typename SizeT>
+class MappedPtrVec {
 
 private:
-	struct VectorInternals {
+	struct ListInternals {
 		SizeT FirstPtr;
 		SizeT LastPtr;
 		SizeT MaxPtr; // Max value vector can hold before reallocating.
@@ -25,12 +25,12 @@ public:
 	WindowsMemory* ProcMem;
 	
 
-	MappedVector(SizeT addr, WindowsMemory* Mem) {
+	MappedPtrVec(SizeT addr, WindowsMemory* Mem) {
 		ProcMem = Mem;
 		ProcMem->ReadMemory(addr, (u8*)&VecMap, sizeof(VecMap));
 	};
 
-	MappedVector(SizeT* addr, WindowsMemory* Mem) {
+	MappedPtrVec(SizeT* addr, WindowsMemory* Mem) {
 		ProcMem = Mem;
 		ProcMem->ReadMemory((SizeT)addr, (u8*)&VecMap, sizeof(VecMap));
 	};

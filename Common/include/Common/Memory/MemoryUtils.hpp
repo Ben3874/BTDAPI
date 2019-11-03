@@ -52,6 +52,10 @@ public:
 	DLL_PUBLIC TL32 MultiLevelPtr(u32 BaseAddr, std::vector<u32> Offsets);
 	DLL_PUBLIC TL64 MultiLevelPtr(u64 BaseAddr, std::vector<u64> Offsets);
 
+	void Test() {
+		LoadLibrary("");
+	};
+
 	
 
 };

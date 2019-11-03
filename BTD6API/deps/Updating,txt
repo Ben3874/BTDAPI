@@ -13,3 +13,5 @@ Eg: 2019.2.5f1 -> 2019.2.5
 On the next screen, make sure to select "Windows Build Support (IL2CPP)".
 Proceed to install the desired unity version.
 
+On unity hub, click on the ellipsis and click "Show in explorer"
+Navigate to Editor\Data\il2cpp\libil2cpp

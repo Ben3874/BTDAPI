@@ -20,16 +20,19 @@ VERSION ${${PROJECT_NAME}_VERSION_MAJOR}.${${PROJECT_NAME}_VERSION_MINOR}
 
 target_sources(${PROJECT_NAME}
 	# List .cpp and .hpp files here.
+	PUBLIC
+	include/${PROJECT_NAME}/api.hpp
+	include/${PROJECT_NAME}/base.hpp
+	include/${PROJECT_NAME}/bloons.hpp
+
 	PRIVATE
 	src/dummy.cpp
-	src/api.hpp
-	src/base.hpp
-	src/bloons.hpp
 	src/bloons.cpp
+	src/base.cpp
 )
 
 target_include_directories(${PROJECT_NAME}
-PUBLIC include/${PROJECT_NAME}
+PUBLIC include/
 PRIVATE src
 )
 

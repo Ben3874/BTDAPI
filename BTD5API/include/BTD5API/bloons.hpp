@@ -2,7 +2,6 @@
 
 #include "core/core.hpp"
 #include "Memory/memory.hpp"
-#include "base.hpp"
 
 #define OFF_STRUCT(name, members) union { members } name
 
@@ -58,10 +57,6 @@ private:
 
 	u32 BloonAddr;
 
-public:
-
-	Bloon(u32 Ptr);
-
 	void SetSpriteX(float x);
 	float GetSpriteX();
 
@@ -81,6 +76,8 @@ public:
 	float GetPosY();
 
 public:
+
+	Bloon(u32 Ptr);
 
 	__declspec(property(get = GetSPriteX, put = SetSpriteX)) float spriteX;
 	__declspec(property(get = GetSpriteY, put = SetSpriteY)) float spriteY;
