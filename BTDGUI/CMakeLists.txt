@@ -3,6 +3,13 @@
 #
 # BTD Mod loader & Tools GUI for windows.
 #
+
+#
+# GUI should be made with WPF and C++
+# This can be achieved with C++/CLI
+# Example: https://www.codeguru.com/cpp/cpp/cpp_managed/general/article.php/c16355/Using-WPF-with-Managed-C.htm
+#
+
 set(PROJECT_NAME BTDGUI)
 
 set(${PROJECT_NAME}_VERSION_MAJOR 1)
@@ -16,21 +23,12 @@ add_executable(WIN32 ${PROJECT_NAME} "")
 
 set_target_properties(${PROJECT_NAME} PROPERTIES
 VERSION ${${PROJECT_NAME}_VERSION_MAJOR}.${${PROJECT_NAME}_VERSION_MINOR}
-VS_WINRT_EXTENSIONS TRUE
 )
 
 target_sources(${PROJECT_NAME}
 	# List .cpp and .hpp files here.
 	PRIVATE
-	src/WinMain.cpp
 
-	src/GUI/App.xaml
-	src/GUI/MainWindows.xaml
-
-	src/module.g.cpp
-	
-	src/pch.cpp
-	src/pch.hpp
 
 
 )
