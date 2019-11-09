@@ -1,8 +1,13 @@
 #include "BTD5API/api.hpp"
 
+WindowsMemory* Bloon::mem;
 
 Bloon::Bloon(u32 Ptr) {
 	BloonAddr = Ptr;
+}
+
+void Bloon::SetMem(WindowsMemory* memory) {
+	mem = memory;
 }
 
 // 0xA0
@@ -46,8 +51,14 @@ void Bloon::SetDistanceOnTrack(float dist) {
 }
 
 float Bloon::GetDistanceOnTrack() {
-	LOGW("WARNING: GetDistanceOnTrack not yet implemented!");
-	return 0;
+	//	u32 Dist = (u32)BTD5.MultiLevelPtr(BaseAddr, OffsetList);
+//	float dis1 = reinterpret_cast<float&>(Dist);
+
+	u32 DistBytes;
+	mem->Read(BloonAddr + (u32)0x26c, &DistBytes);
+	float Distance = reinterpret_cast<float&>(DistBytes);
+	
+	return Distance;
 }
 
 // 0x278

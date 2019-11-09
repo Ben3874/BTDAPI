@@ -23,34 +23,36 @@ private:
 public:
 
 	WindowsMemory* ProcMem;
-	
 
-	MappedPtrVec(SizeT addr, WindowsMemory* Mem) {
+	DLL_PUBLIC void Map(SizeT addr, WindowsMemory* Mem) {
 		ProcMem = Mem;
-		ProcMem->ReadMemory(addr, (u8*)&VecMap, sizeof(VecMap));
-	};
-
-	MappedPtrVec(SizeT* addr, WindowsMemory* Mem) {
-		ProcMem = Mem;
-		ProcMem->ReadMemory((SizeT)addr, (u8*)&VecMap, sizeof(VecMap));
-	};
-
-	T operator[](SizeT Index) {
-		SizeT First = ProcMem->Deref(VecMap.FirstPtr);
-		return ProcMem->Deref(First + (Index * sizeof(T)));
-	};
-
-	SizeT size() {
-		SizeT First = ProcMem->Deref(VecMap.FirstPtr);
-		SizeT Last = ProcMem->Deref(VecMap.LastPtr);
-		return (First - Last) / sizeof(SizeT);
+		VecMap.FirstPtr = addr;
+		VecMap.LastPtr = addr + (u32)0x4;
+		VecMap.MaxPtr = addr + (u32)0x8;
 	}
 
-	SizeT data() {
+	DLL_PUBLIC void Map(SizeT* addr, WindowsMemory* Mem) {
+		ProcMem = Mem;
+		ProcMem->ReadMemory((SizeT)addr, (u8*)(& VecMap), sizeof(VecMap));
+	}
+
+	DLL_PUBLIC T operator[](SizeT Index) {
+		SizeT First = ProcMem->Deref(VecMap.FirstPtr);
+		T t = (T(ProcMem->Deref(First + (Index * sizeof(T)))));
+		return t;
+	};
+
+	DLL_PUBLIC SizeT size() {
+		SizeT First = ProcMem->Deref(VecMap.FirstPtr);
+		SizeT Last = ProcMem->Deref(VecMap.LastPtr);
+		return ((Last - First) / sizeof(SizeT));
+	}
+
+	DLL_PUBLIC SizeT data() {
 		return ProcMem->Deref(VecMap.FirstPtr);
 	}
 
-	void Push_Back(T data) {
+	DLL_PUBLIC void Push_Back(T data) {
 		SizeT Size = size();
 		
 	}

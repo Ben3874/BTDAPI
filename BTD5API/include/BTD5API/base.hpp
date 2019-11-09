@@ -12,15 +12,12 @@ using Btd5Vec = MappedPtrVec<T, u32>;
 class BTD5API {
 
 private:
-	static WindowsMemory mem;
-
-	void setBloonList(Btd5Vec<Bloon>* ptr);
-	Btd5Vec<Bloon> getBloonList();
+	WindowsMemory* mem;
 
 public:
 
-	__declspec(property(get = getBloonList, put = setBloonList)) Btd5Vec<Bloon> BloonList;
+	Btd5Vec<Bloon> BloonList;
 
-	__declspec(property(get = GetSPriteX, put = SetSpriteX)) float spriteX;
+	DLL_PUBLIC void Initialise(WindowsMemory *memory);
 
 };

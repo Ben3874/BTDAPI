@@ -18,6 +18,27 @@ HANDLE Btd5Handle;
 HANDLE BtdBHandle;
 HANDLE Btd6Handle;
 
+BTD5API Btd5API;
+
+void TestBTD5() {
+
+
+	HMODULE Btd5Mod = LoadMemory::GetModulePointer(Btd5Handle, BTD5PROCNAME);
+
+	WindowsMemory BTD5;
+	BTD5.Initialise(Btd5Handle, Btd5Mod);
+
+	Btd5API.Initialise(&BTD5);
+
+	for (;;) {
+		for (int i = 0; i < Btd5API.BloonList.size(); i++) {
+			Bloon bloon = Btd5API.BloonList[i];
+			std::cout << "Bloon " << i << "'s Distance:" << bloon.Distance << "\n";
+		}
+		Sleep(1000);
+	}
+
+}
 
 void Run() {
 
@@ -48,6 +69,7 @@ void Run() {
 		cout << "BTD Game is running... Attempting to attach...\n ";
 		if (BTD5Running) {
 			cout << "Bloons TD 5 is currently running...\n";
+			TestBTD5();
 			}
 		if (BTDBRunning) {
 			cout << "Bloons TDB is currently running...\n";
@@ -62,7 +84,8 @@ void Run() {
 	}
 }
 
-const u64 BASEPTR = 0x00884280;
+
+
 
 int main(int argc, char* argv[]) {
 
@@ -98,34 +121,11 @@ int main(int argc, char* argv[]) {
 
 	Run();
 
-
-
 	cout << "Type help for a list of commands\n";
 
-	HMODULE Btd5Mod = LoadMemory::GetModulePointer(Btd5Handle, BTD5PROCNAME);
-
-	WindowsMemory BTD5(Btd5Handle, Btd5Mod);
 
 
 
-	//for (;;) {
-	//	
-	//	
-
-	//	u32 firstPtrTest = BTD5.OffsetFromMod((u32)0x0088'4280);
-	//	u32 BaseAddr;
-	//	BTD5.Read((u32)firstPtrTest, &BaseAddr);
-
-
-	//	const std::vector<u32> OffsetList = { 0x0, 0x74, 0x4, 0x0, 0x26C };
-
-	//	u32 Dist = (u32)BTD5.MultiLevelPtr(BaseAddr, OffsetList);
-	//	float dis1 = reinterpret_cast<float&>(Dist);
-	//	
-
-
-	//	int x = 5;
-	//}
 	
 
 

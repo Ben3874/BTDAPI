@@ -23,6 +23,8 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/include/${PROJECT_NAME}/Core/log.hpp.
 target_sources(${PROJECT_NAME}
 	# List .cpp and .hpp files here.
 	PUBLIC
+	include/${PROJECT_NAME}/Core/pch.hpp
+
 	include/${PROJECT_NAME}/Core/platform.hpp
 	include/${PROJECT_NAME}/Core/stdn.hpp
 	include/${PROJECT_NAME}/Core/log.hpp
@@ -34,14 +36,19 @@ target_sources(${PROJECT_NAME}
 	include/${PROJECT_NAME}/Memory/MemoryUtils.hpp
 	include/${PROJECT_NAME}/Memory/memory.hpp
 	include/${PROJECT_NAME}/Memory/MappedPtrVec.hpp
+	include/${PROJECT_NAME}/Memory/Pe.hpp
 
 	PRIVATE
-	
+	src/Core/pch.cpp
+
 	src/Steam/steamUtils.cpp
 
 	src/Memory/LoadMemory.cpp
 	src/Memory/MemoryUtils.cpp
+	src/Memory/Pe.cpp
 )
+
+# TODO: Make PCH a PCH
 
 target_include_directories(${PROJECT_NAME}
 PUBLIC include/${PROJECT_NAME}

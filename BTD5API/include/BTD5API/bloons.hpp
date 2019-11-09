@@ -56,28 +56,32 @@ class Bloon {
 private:
 
 	u32 BloonAddr;
+	static WindowsMemory* mem;
 
-	void SetSpriteX(float x);
-	float GetSpriteX();
 
-	void SetSpriteY(float y);
-	float GetSpriteY();
-
-	void SetBloonTypePtr(BloonType* ptr);
-	BloonType GetBloonType();
-
-	void SetDistanceOnTrack(float dist);
-	float GetDistanceOnTrack();
-
-	void SetPosX(float x);
-	float GetPosX();
-
-	void SetPosY(float y);
-	float GetPosY();
 
 public:
 
-	Bloon(u32 Ptr);
+	DLL_PUBLIC void SetSpriteX(float x);
+	DLL_PUBLIC float GetSpriteX();
+
+	DLL_PUBLIC void SetSpriteY(float y);
+	DLL_PUBLIC float GetSpriteY();
+
+	DLL_PUBLIC void SetBloonTypePtr(BloonType* ptr);
+	DLL_PUBLIC BloonType GetBloonType();
+
+	DLL_PUBLIC void SetDistanceOnTrack(float dist);
+	DLL_PUBLIC float GetDistanceOnTrack();
+
+	DLL_PUBLIC void SetPosX(float x);
+	DLL_PUBLIC float GetPosX();
+
+	DLL_PUBLIC void SetPosY(float y);
+	DLL_PUBLIC float GetPosY();
+
+	DLL_PUBLIC Bloon(u32 Ptr);
+	DLL_PUBLIC void SetMem(WindowsMemory* mem);
 
 	__declspec(property(get = GetSPriteX, put = SetSpriteX)) float spriteX;
 	__declspec(property(get = GetSpriteY, put = SetSpriteY)) float spriteY;

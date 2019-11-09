@@ -128,4 +128,3 @@ HMODULE LoadMemory::GetModulePointer(HANDLE HProc, String moduleName) {
 	LOGW("WARNING: " << moduleName << " to process not found");
 	return NULL;
 }
-

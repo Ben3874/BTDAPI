@@ -1,10 +1,11 @@
 #pragma once
 #include "Core/core.hpp"
 #include "LoadMemory.hpp"
-#define WIN32_LEAN_AND_MEAN
-#include <Windows.h>
-#include <Psapi.h>
-#include <vector>
+#include <deque>
+#include <list>
+#include <forward_list>
+#include <array>
+
 
 // Bytes that dont represent a type (typeless)
 typedef u8 TL8;
@@ -20,7 +21,7 @@ private:
 	HMODULE Hmod = NULL;
 
 public:
-	DLL_PUBLIC WindowsMemory(HANDLE ProcessHandle, HMODULE ModuleHandle);
+	DLL_PUBLIC void Initialise(HANDLE ProcessHandle, HMODULE ModuleHandle);
 
 	// Returns offset
 	DLL_PUBLIC inline u32 OffsetFromMod(u32 offset);

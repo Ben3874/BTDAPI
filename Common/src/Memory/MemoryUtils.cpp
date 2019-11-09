@@ -1,6 +1,6 @@
 #include "Memory/MemoryUtils.hpp"
 
-WindowsMemory::WindowsMemory(HANDLE ProcHandle, HMODULE ModHandle) {
+void WindowsMemory::Initialise(HANDLE ProcHandle, HMODULE ModHandle) {
 	Hproc = ProcHandle;
 	Hmod = ModHandle;
 }
@@ -32,7 +32,14 @@ void WindowsMemory::ReadMemory(u64 Addr, u8* Buffer, u64 Len) {
 		NULL
 	) == 0) {
 		u32 error = GetLastError();
-		LOGW("WARNING: ReadProcessMemory errored! WinAPI error code 0x" << std::hex << error);
+		if (error == ERROR_PARTIAL_COPY) {
+			LOGW("WARNING: ReadProcessMemory errored: Partial copy occured (0x12b)\n" <<
+			"You're likely reading from unacessable memory");
+		}
+		else {
+			LOGW("WARNING: ReadProcessMemory errored! WinAPI error code 0x" << std::hex << error);
+		}
+		
 	}
 }
 

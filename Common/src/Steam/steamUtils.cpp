@@ -1,13 +1,5 @@
 #include "Core/core.hpp"
 #include "Steam/steamUtils.hpp"
-#include <iostream>
-#include <vector>
-#include <fstream>
-
-#define WIN32_LEAN_AND_MEAN
-#include <Windows.h>
-#include <tchar.h>
-#include <WinReg.h>
 
 String SteamUtils::convertUnixPathToWindows(String unixPath) {
 	for (int i = 0; i < unixPath.size(); i++) {
