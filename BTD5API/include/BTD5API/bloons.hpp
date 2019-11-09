@@ -53,14 +53,26 @@ class Bloon {
 	// 0x27C	- PosY
 	//
 
+	enum Offsets {
+		OFF_FIELD_SPRITEX = 0xA0,
+		OFF_FIELD_SPRITEY = 0xA4,
+		OFF_FIELD_BLOONTYPE = 0x1FC,
+		OFF_FIELD_DISTANCE = 0x26c,
+		OFF_FIELD_POSX = 0x278,
+		OFF_FIELD_POSY = 0x27c
+	};
+
 private:
 
-	u32 BloonAddr;
+	
 	static WindowsMemory* mem;
 
-
+	DLL_PRIVATE inline u32 ReadOffsetField(u32 Offset);
 
 public:
+
+	// READONLY. DO NOT SET!
+	u32 BloonAddr;
 
 	DLL_PUBLIC void SetSpriteX(float x);
 	DLL_PUBLIC float GetSpriteX();
@@ -82,8 +94,9 @@ public:
 
 	DLL_PUBLIC Bloon(u32 Ptr);
 	DLL_PUBLIC void SetMem(WindowsMemory* mem);
+	
 
-	__declspec(property(get = GetSPriteX, put = SetSpriteX)) float spriteX;
+	__declspec(property(get = GetSpriteX, put = SetSpriteX)) float spriteX;
 	__declspec(property(get = GetSpriteY, put = SetSpriteY)) float spriteY;
 	__declspec(property(get = GetBloonType, put = SetBloonTypePtr)) BloonType bloonType;
 	__declspec(property(get = GetDistanceOnTrack, put = SetDistanceOnTrack)) float Distance;

@@ -33,9 +33,16 @@ void TestBTD5() {
 	for (;;) {
 		for (int i = 0; i < Btd5API.BloonList.size(); i++) {
 			Bloon bloon = Btd5API.BloonList[i];
-			std::cout << "Bloon " << i << "'s Distance:" << bloon.Distance << "\n";
+			std::cout << "Dumping information about bloon " << i + 1 << ":\n"
+				<< "Address: " << std::hex << bloon.BloonAddr << std::dec << "\n"
+				<< "Sprite X: " << bloon.spriteX << "\n"
+				<< "Sprite Y: " << bloon.spriteY << "\n"
+				<< "Distance on track: " << bloon.Distance << "\n"
+				<< "Pos X: " << bloon.PosX << "\n"
+				<< "Pos Y: " << bloon.PosY << "\n"
+				;
 		}
-		Sleep(1000);
+		Sleep(1000000000);
 	}
 
 }
