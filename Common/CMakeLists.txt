@@ -37,6 +37,7 @@ target_sources(${PROJECT_NAME}
 	include/${PROJECT_NAME}/Memory/memory.hpp
 	include/${PROJECT_NAME}/Memory/MappedPtrVec.hpp
 	include/${PROJECT_NAME}/Memory/Pe.hpp
+	include/${PROJECT_NAME}/Memory/Types.hpp
 
 	PRIVATE
 	src/Core/pch.cpp

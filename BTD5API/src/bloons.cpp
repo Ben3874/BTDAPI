@@ -1,9 +1,124 @@
 #include "BTD5API/api.hpp"
 
+//
+// Bloon Type
+//
+
+WindowsMemory* BloonType::mem;
+
+BloonType::BloonType(u32 PtrToBloonType) {
+	BloonTypeAddr = PtrToBloonType;
+}
+
+void BloonType::SetMem(WindowsMemory* memory) {
+	mem = memory;
+}
+
+u32 BloonType::ReadOffsetField(u32 Offset) {
+	u32 ret;
+	mem->Read((u32)BloonTypeAddr + Offset, &ret);
+	return ret;
+}
+
+void BloonType::WriteOffsetField(u32 Offset, u8* bytes) {
+	mem->Write((u32)(BloonTypeAddr) + Offset, (u32*)bytes);
+}
+
+BloonTypes BloonType::GetType() {
+	return (BloonTypes)ReadOffsetField(OFF_FIELD_TYPE);
+}
+
+void BloonType::SetType(BloonTypes type) {
+
+}
+
+String BloonType::GetNameFromType(BloonTypes bloon) {
+
+	switch (bloon) {
+
+	case BLOON_TEST_BLOON:
+		return "Test";
+		break;
+
+	case BLOON_RED:
+		return "Red";
+		break;
+
+	case BLOON_BLUE:
+		return "Blue";
+		break;
+
+	case BLOON_GREEN:
+		return "Green";
+		break;
+
+	case BLOON_YELLOW:
+		return "Yellow";
+		break;
+
+	case BLOON_PINK:
+		return "Pink";
+		break;
+
+	case BLOON_BLACK:
+		return "Black";
+		break;
+
+	case BLOON_WHITE:
+		return "White";
+		break;
+
+	case BLOON_LEAD:
+		return "Lead";
+		break;
+
+	case BLOON_ZEBRA:
+		return "Zebra";
+		break;
+
+	case BLOON_RAINBOW:
+		return "Rainbow";
+		break;
+
+	case BLOON_CERAMIC:
+		return "Ceramic";
+		break;
+
+	case BLOON_UNKNOWN:
+		LOGW("WARNING: Unknown bloon detected. Please report what bloon this is!");
+		return "Unknown";
+		break;
+
+	case BLOON_MOAB:
+		return "Moab";
+		break;
+
+	case BLOON_BFB:
+		return "BFB";
+		break;
+
+	case BLOON_ZOMG:
+		return "ZOMG";
+		break;
+
+	default:
+		LOGW("WARNING: Bloon name not found!. Bloon ID 0x" << TO_STRING(bloon));
+		return "unknown";
+	}
+
+	LOGE("Error: Unreachable code, GetNameFromType reached.");
+	return "Error: Bloon type not found!";
+}
+
+
+//
+// Bloon
+//
+
 WindowsMemory* Bloon::mem;
 
-Bloon::Bloon(u32 Ptr) {
-	BloonAddr = Ptr;
+Bloon::Bloon(u32 PtrToBloon) {
+	BloonAddr = PtrToBloon;
 }
 
 void Bloon::SetMem(WindowsMemory* memory) {
@@ -51,9 +166,9 @@ void Bloon::SetBloonTypePtr(BloonType* ptr) {
 }
 
 BloonType Bloon::GetBloonType() {
-	LOGW("WARNING: GetBloonType not yet implemented!");
-	BloonType NullType;
-	return NullType;
+	u32 PtrToBloonType = ReadOffsetField(OFF_FIELD_BLOONTYPE);
+	BloonType type(PtrToBloonType);
+	return type;
 }
 
 // 0x26C

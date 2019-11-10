@@ -30,9 +30,32 @@ enum BloonTypes : u32
 };
 
 class BloonType {
-	char* Name;
-	char* SpriteSheet;
+	
+	enum Offsets {
+		OFF_FIELD_TYPE = 0x28,
+		OFF_FIELD_BLOON_FILE = 0x10,
+	};
 
+private:
+	static WindowsMemory* mem;
+
+	DLL_PRIVATE inline u32 ReadOffsetField(u32 Offset);
+	DLL_PRIVATE inline void WriteOffsetField(u32 Offset, u8* bytes);
+
+public:
+
+	u32 BloonTypeAddr;
+
+	DLL_PUBLIC BloonType(u32 PtrToBloontype);
+	DLL_PUBLIC void SetMem(WindowsMemory* memory);
+
+	DLL_PUBLIC BloonTypes GetType();
+	DLL_PUBLIC void SetType(BloonTypes type);
+	DLL_PUBLIC String GetNameFromType(BloonTypes bloon);
+
+	__declspec(property(get = GetType, put = SetType)) BloonTypes type;
+
+	
 
 };
 
@@ -75,6 +98,9 @@ public:
 	// READONLY. DO NOT SET!
 	u32 BloonAddr;
 
+	DLL_PUBLIC Bloon(u32 PtrToBloon);
+	DLL_PUBLIC void SetMem(WindowsMemory* mem);
+
 	DLL_PUBLIC void SetSpriteX(float x);
 	DLL_PUBLIC float GetSpriteX();
 
@@ -92,10 +118,6 @@ public:
 
 	DLL_PUBLIC void SetPosY(float y);
 	DLL_PUBLIC float GetPosY();
-
-	DLL_PUBLIC Bloon(u32 Ptr);
-	DLL_PUBLIC void SetMem(WindowsMemory* mem);
-	
 
 	__declspec(property(get = GetSpriteX, put = SetSpriteX)) float spriteX;
 	__declspec(property(get = GetSpriteY, put = SetSpriteY)) float spriteY;

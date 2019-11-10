@@ -1,9 +1,6 @@
 #include "BTD5API/base.hpp"
 #include "BTD5API/bloons.hpp"
 
-
-
-
 void BTD5API::Initialise(WindowsMemory *memory) {
 
 	mem = memory;
@@ -19,8 +16,11 @@ void BTD5API::Initialise(WindowsMemory *memory) {
 	u32 VecDataOffset = (u32)mem->MultiLevelPtr(BaseAddr, BloonListVectorOffsets);
 	BloonList.Map(VecDataOffset + 0x4, mem);
 
-	Bloon DummyInstance(0x0);
-	DummyInstance.SetMem(memory);
+	Bloon BloonDummyInstance(0x0);
+	BloonDummyInstance.SetMem(memory);
+
+	BloonType TypeDummyInstance(0x0);
+	TypeDummyInstance.SetMem(memory);
 
 
 }
