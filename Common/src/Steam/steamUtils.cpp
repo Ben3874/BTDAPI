@@ -12,6 +12,8 @@ String SteamUtils::convertUnixPathToWindows(String unixPath) {
 
 String SteamUtils::WindowsGetGameDirectory(u64 appid, std::string gameName) {
 
+	LOGMV("Trying to find " << gameName << "'s directory...");
+
 	BOOL ErrorCode;
 	DWORD KeyType;
 

@@ -9,12 +9,13 @@ set(SOLUTION_NAME "BTDAPI")
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
-option(BTDAPI_LOG_METHODS "Displays lots of debugging messages..." ON)
-option(BTDAPI_LOG_LOADING "Displays lots of debugging messages..." ON)
-option(BTDAPI_LOG_DEBUG "Displays lots of debugging messages..." ON)
-option(BTDAPI_LOG_WARNING "Displays lots of debugging messages..." ON)
-option(BTDAPI_LOG_INFO "Displays lots of debugging messages..." ON)
-option(BTDAPI_LOG_VERBOSE "Displays lots of debugging messages..." ON)
+option(BTDAPI_LOG_METHODS "Displays messages at the start and end of desired methods" ON)
+option(BTDAPI_LOG_METHODS_VERBOSE "Displays even more log messages at the start and end of desired methods." OFF)
+option(BTDAPI_LOG_LOADING "Displays messages loading external components." ON)
+option(BTDAPI_LOG_DEBUG "An equivilent use of print based debugging. "ON)
+option(BTDAPI_LOG_WARNING "Displays warnings, these likely lead to unexpected behaviour" ON)
+option(BTDAPI_LOG_INFO "Displays miscellaneous messages, EG: Version of API" ON)
+option(BTDAPI_LOG_VERBOSE "Any debug messages that dont fit other categories go here." ON)
 
 project(${SOLUTION_NAME} LANGUAGES CXX VERSION 1.0)
 

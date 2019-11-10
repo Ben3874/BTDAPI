@@ -6,10 +6,12 @@
 String FormatBool(bool Bool) {
 	// Uses ANSI escape codes
 	if (Bool == true) {
-		return "\x1B[92m[True]\033[0m";
+		//return "\x1B[92m[True]\033[0m";
+		return "[True]";
 	}
 	else {
-		return "\x1B[91m[False]\033[0m";;
+		//return "\x1B[91m[False]\033[0m";;
+		return "[False]";
 	}
 
 };
@@ -21,7 +23,7 @@ HANDLE Btd6Handle;
 BTD5API Btd5API;
 
 void TestBTD5() {
-
+	LOGM("Running Tests for BTD5...");
 
 	HMODULE Btd5Mod = LoadMemory::GetModulePointer(Btd5Handle, BTD5PROCNAME);
 
@@ -33,21 +35,18 @@ void TestBTD5() {
 	for (;;) {
 		for (int i = 0; i < Btd5API.BloonList.size(); i++) {
 			Bloon bloon = Btd5API.BloonList[i];
-			/*std::cout << "Dumping information about bloon " << i + 1 << ":\n"
+			std::cout << "Dumping information about bloon " << i + 1 << ":\n"
 				<< "Address: " << std::hex << bloon.BloonAddr << std::dec << "\n"
-				<< "Sprite X: " << bloon.spriteX << "\n"
-				<< "Sprite Y: " << bloon.spriteY << "\n"
+				<< "Scale X: " << bloon.spriteX << "\n"
+				<< "Scale Y: " << bloon.spriteY << "\n"
 				<< "Distance on track: " << bloon.Distance << "\n"
 				<< "Pos X: " << bloon.PosX << "\n"
 				<< "Pos Y: " << bloon.PosY << "\n"
-				;*/
+				;
 
-			Btd5API.BloonList[0x0].PosX = 5.0f;
+			Btd5API.BloonList[i].spriteX += 0.1f;
 		}
-
-		
-		Btd5API.BloonList[0x0].spriteY = 0.2f;
-		//Sleep(1000000000);
+		Sleep(1000);
 	}
 
 }
@@ -78,16 +77,16 @@ void Run() {
 	AnyGameRunning = AnyGameRunning | BTD5Running | BTDBRunning | BTD6Running;
 
 	if (AnyGameRunning) {
-		cout << "BTD Game is running... Attempting to attach...\n ";
+		cout << "BTD Game is running... Attempting to attach...\n";
 		if (BTD5Running) {
-			cout << "Bloons TD 5 is currently running...\n";
+			cout << "Bloons TD 5 is currently running!\n";
 			TestBTD5();
 			}
 		if (BTDBRunning) {
-			cout << "Bloons TDB is currently running...\n";
+			cout << "Bloons TDB is currently running!\n";
 		}
 		if (BTD6Running) {
-			cout << "Bloons TD6 is currently running...\n";
+			cout << "Bloons TD6 is currently running!\n";
 		}
 
 	}
@@ -101,8 +100,9 @@ void Run() {
 
 int main(int argc, char* argv[]) {
 
-	cout << "===Bloons TD API Command Line===\n";
-	cout << "Detecting BTD game installations...\n";
+	LOGI("===Bloons TD API Command Line===");
+	LOGI("Version: 1");
+	LOGM("Detecting BTD game installations...");
 
 	String BTD5Dir = SteamUtils::WindowsGetGameDirectory(BTD5AppId, BTD5Name);
 	String BTDBDir = SteamUtils::WindowsGetGameDirectory(BTDBAppId, BTDBName);

@@ -14,6 +14,7 @@
 
 // Defined (or not) in the .in file by cmake
 #define BTDAPI_LOG_METHODS
+/* #undef BTDAPI_LOG_METHODS_VERBOSE */
 #define BTDAPI_LOG_LOADING
 #define BTDAPI_LOG_DEBUG
 #define BTDAPI_LOG_WARNING
@@ -41,6 +42,8 @@
 //
 
 // LOGM -	Method Log.		Eg: in foo.bar()		LOGM("INFO: Doing foo.bar")		(Executing a method)
+// LOGMV -	Verbose Method Log.
+
 // LOGL -	Loading Log.	Eg: in foo.init()		LOGS("INFO: Loading foo")		(Loading a component)
 // LOGD -	Debug Log.		Eg: in foo.bar(int x)	LOGD("DEBUG: x = " << x)		(Printing values wihout a debugger)
 // LOGW -	Warning Log.	Eg:	in foo.bar(int x)	LOGD("WARNING: x > 100.")		(Unexpected or potentially problematic behaviour)
@@ -60,6 +63,12 @@
 #define LOGM(x) (PRINTE(x))
 #else
 #define LOGM(x) ((void)0)
+#endif
+
+#if defined(BTDAPI_LOG_METHODS_VERBOSE)
+#define LOGMV(x) (PRINTE(x))
+#else
+#define LOGMV(x) ((void)0)
 #endif
 
 #if defined(BTDAPI_LOG_LOADING)
