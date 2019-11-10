@@ -68,6 +68,7 @@ private:
 	static WindowsMemory* mem;
 
 	DLL_PRIVATE inline u32 ReadOffsetField(u32 Offset);
+	DLL_PRIVATE inline void WriteOffsetField(u32 Offset, u8* bytes);
 
 public:
 

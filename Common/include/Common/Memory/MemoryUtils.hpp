@@ -13,7 +13,6 @@ typedef u16 TL16;
 typedef u32 TL32;
 typedef u64 TL64;
 
-
 class WindowsMemory {
 
 private:
@@ -34,8 +33,13 @@ public:
 	// Buffer must be allocated before calling
 	DLL_PUBLIC void ReadMemory(u64 Offset, u8* Buffer, u64 Len);
 
+	DLL_PUBLIC void WriteMemory(u64 Offset, u8* Bytes, u64 Len);
+
 	DLL_PUBLIC inline void Read(u32 Addr, u32* Ret);
 	DLL_PUBLIC inline void Read(u64 Addr, u64* Ret);
+
+	DLL_PUBLIC inline void Write(u32 Addr, u32* Ret);
+	DLL_PUBLIC inline void Write(u64 Addr, u64* Ret);
 
 	DLL_PUBLIC inline u32 Deref(u32 Addr);
 	DLL_PUBLIC inline u32 Deref(u32* Addr);

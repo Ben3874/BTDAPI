@@ -37,11 +37,25 @@ void WindowsMemory::ReadMemory(u64 Addr, u8* Buffer, u64 Len) {
 			"You're likely reading from unacessable memory");
 		}
 		else {
-			LOGW("WARNING: ReadProcessMemory errored! WinAPI error code 0x" << std::hex << error);
+			LOGW("WARNING: ReadProcessMemory errored! WinAPI error code 0x" << std::hex << error << std::dec);
 		}
 		
 	}
 }
+
+void WindowsMemory::WriteMemory(u64 Addr, u8* Bytes, u64 Len) {
+	if (WriteProcessMemory(
+		Hproc,
+		(void*)Addr,
+		Bytes,
+		Len,
+		NULL
+	) == 0) {
+		u32 error = GetLastError();
+		LOGW("WARNING: WritePRocessMemory erorred! WinARPI error code 0x" << std::hex << error << std::dec);
+	}
+}
+
 
 void WindowsMemory::Read(u32 Addr, u32* Ret) {
 	ReadMemory(Addr, (u8*)Ret, sizeof(u32));
@@ -50,6 +64,16 @@ void WindowsMemory::Read(u32 Addr, u32* Ret) {
 void WindowsMemory::Read(u64 Addr, u64* Ret) {
 	ReadMemory(Addr, (u8*)Ret, sizeof(u64));
 }
+
+void WindowsMemory::Write(u32 Addr, u32* Buf) {
+	WriteMemory(Addr, (u8*)Buf, sizeof(u32));
+}
+
+void WindowsMemory::Write(u64 Addr, u64* Buf) {
+	WriteMemory(Addr, (u8*)Buf, sizeof(u64));
+}
+
+
 
 u32 WindowsMemory::Deref(u32 Addr) {
 	u32 buf;

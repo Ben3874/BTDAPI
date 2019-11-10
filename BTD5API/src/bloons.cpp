@@ -16,10 +16,14 @@ u32 Bloon::ReadOffsetField(u32 Offset) {
 	return ret;
 }
 
+void Bloon::WriteOffsetField(u32 Offset, u8* bytes) {
+	mem->Write((u32)(BloonAddr)+Offset, (u32*)bytes);
+}
+
 // 0xA0
 
 void Bloon::SetSpriteX(float x) {
-	LOGW("WARNING: SetSpriteX not yet implemented!");
+	WriteOffsetField(OFF_FIELD_SPRITEX, (u8*)&x);
 }
 
 float Bloon::GetSpriteX(){
@@ -31,7 +35,7 @@ float Bloon::GetSpriteX(){
 // 0xA4
 
 void Bloon::SetSpriteY(float y) {
-	LOGW("WARNING: SetSpriteY not yet implemented!");
+	WriteOffsetField(OFF_FIELD_SPRITEY, (u8*)&y);
 }
 
 float Bloon::GetSpriteY() {
@@ -55,7 +59,7 @@ BloonType Bloon::GetBloonType() {
 // 0x26C
 
 void Bloon::SetDistanceOnTrack(float dist) {
-	LOGW("WARNING: SetDistanceOnTrack not yet implemented!");
+	WriteOffsetField(OFF_FIELD_DISTANCE, (u8*)&dist);
 }
 
 float Bloon::GetDistanceOnTrack() {
@@ -68,11 +72,11 @@ float Bloon::GetDistanceOnTrack() {
 // 0x278
 
 void Bloon::SetPosX(float x) {
-	LOGW("WARNING: SetPosX not yet implemented!");
+	WriteOffsetField(OFF_FIELD_SPRITEX, (u8*)&x);
 }
 
 float Bloon::GetPosX() {
-	u32 FloatBytes = ReadOffsetField(OFF_FIELD_SPRITEX);
+	u32 FloatBytes = ReadOffsetField(OFF_FIELD_POSX);
 	float PosX = reinterpret_cast<float&>(FloatBytes);
 	return PosX;
 }
@@ -80,11 +84,11 @@ float Bloon::GetPosX() {
 // 0x26C
 
 void Bloon::SetPosY(float y) {
-	LOGW("WARNING: SetPosY not yet implemented!");
+	WriteOffsetField(OFF_FIELD_SPRITEY, (u8*)&y);
 }
 
 float Bloon::GetPosY() {
-	u32 FloatBytes = ReadOffsetField(OFF_FIELD_SPRITEY);
+	u32 FloatBytes = ReadOffsetField(OFF_FIELD_POSY);
 	float PosY = reinterpret_cast<float&>(FloatBytes);
 	return PosY;
 }
