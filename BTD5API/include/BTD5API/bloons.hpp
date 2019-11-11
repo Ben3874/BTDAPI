@@ -1,5 +1,4 @@
 #pragma once
-
 #include "core/core.hpp"
 #include "Memory/memory.hpp"
 
@@ -37,7 +36,6 @@ class BloonType {
 	};
 
 private:
-	static WindowsMemory* mem;
 
 	DLL_PRIVATE inline u32 ReadOffsetField(u32 Offset);
 	DLL_PRIVATE inline void WriteOffsetField(u32 Offset, u8* bytes);
@@ -47,7 +45,6 @@ public:
 	u32 BloonTypeAddr;
 
 	DLL_PUBLIC BloonType(u32 PtrToBloontype);
-	DLL_PUBLIC void SetMem(WindowsMemory* memory);
 
 	DLL_PUBLIC BloonTypes GetType();
 	DLL_PUBLIC void SetType(BloonTypes type);
@@ -87,9 +84,6 @@ class Bloon {
 
 private:
 
-	
-	static WindowsMemory* mem;
-
 	DLL_PRIVATE inline u32 ReadOffsetField(u32 Offset);
 	DLL_PRIVATE inline void WriteOffsetField(u32 Offset, u8* bytes);
 
@@ -99,7 +93,6 @@ public:
 	u32 BloonAddr;
 
 	DLL_PUBLIC Bloon(u32 PtrToBloon);
-	DLL_PUBLIC void SetMem(WindowsMemory* mem);
 
 	DLL_PUBLIC void SetSpriteX(float x);
 	DLL_PUBLIC float GetSpriteX();

@@ -9,14 +9,11 @@ using Btd5Vec = MappedPtrVec<T, u32>;
 using Btd5Vec2 = Vec2d<float>;
 
 
-// The static memory used for all calls in the API.
-
 class BTD5API {
 
-private:
-	WindowsMemory* mem;
-
 public:
+
+	static WindowsMemory* mem;
 
 	Btd5Vec<Bloon> BloonList;
 

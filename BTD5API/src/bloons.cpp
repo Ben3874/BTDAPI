@@ -4,24 +4,19 @@
 // Bloon Type
 //
 
-WindowsMemory* BloonType::mem;
 
 BloonType::BloonType(u32 PtrToBloonType) {
 	BloonTypeAddr = PtrToBloonType;
 }
 
-void BloonType::SetMem(WindowsMemory* memory) {
-	mem = memory;
-}
-
 u32 BloonType::ReadOffsetField(u32 Offset) {
 	u32 ret;
-	mem->Read((u32)BloonTypeAddr + Offset, &ret);
+	BTD5API::mem->Read((u32)BloonTypeAddr + Offset, &ret);
 	return ret;
 }
 
 void BloonType::WriteOffsetField(u32 Offset, u8* bytes) {
-	mem->Write((u32)(BloonTypeAddr) + Offset, (u32*)bytes);
+	BTD5API::mem->Write((u32)(BloonTypeAddr) + Offset, (u32*)bytes);
 }
 
 BloonTypes BloonType::GetType() {
@@ -115,24 +110,20 @@ String BloonType::GetNameFromType(BloonTypes bloon) {
 // Bloon
 //
 
-WindowsMemory* Bloon::mem;
 
 Bloon::Bloon(u32 PtrToBloon) {
 	BloonAddr = PtrToBloon;
 }
 
-void Bloon::SetMem(WindowsMemory* memory) {
-	mem = memory;
-}
 
 u32 Bloon::ReadOffsetField(u32 Offset) {
 	u32 ret;
-	mem->Read((u32)BloonAddr + Offset, &ret);
+	BTD5API::mem->Read((u32)BloonAddr + Offset, &ret);
 	return ret;
 }
 
 void Bloon::WriteOffsetField(u32 Offset, u8* bytes) {
-	mem->Write((u32)(BloonAddr)+Offset, (u32*)bytes);
+	BTD5API::mem->Write((u32)(BloonAddr)+Offset, (u32*)bytes);
 }
 
 // 0xA0

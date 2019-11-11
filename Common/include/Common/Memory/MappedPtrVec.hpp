@@ -38,7 +38,7 @@ public:
 
 	DLL_PUBLIC T operator[](SizeT Index) {
 		SizeT First = ProcMem->Deref(VecMap.FirstPtr);
-		T t = (T(ProcMem->Deref(First + (Index * sizeof(T)))));
+		T t = (T(ProcMem->Deref(First + (Index * sizeof(T))))); // Call constructor with address
 		return t;
 	};
 

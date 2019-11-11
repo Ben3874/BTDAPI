@@ -43,7 +43,7 @@ void TestBTD5() {
 				<< "Distance on track: " << bloon.Distance << "\n"
 				<< "Pos X: " << bloon.PosX << "\n"
 				<< "Pos Y: " << bloon.PosY << "\n"
-				<< "Bloon Type: " << type << "\n"
+				//<< "Bloon Type: " << type << "\n"
 				;
 
 			Btd5API.BloonList[i].spriteX += 0.1f;
