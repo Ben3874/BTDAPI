@@ -1,30 +1,15 @@
 #include "BTD5API/api.hpp"
-
+#include "BTD5API/bloons.hpp"
 //
 // Bloon Type
 //
-
-
-BloonType::BloonType(u32 PtrToBloonType) {
-	BloonTypeAddr = PtrToBloonType;
-}
-
-u32 BloonType::ReadOffsetField(u32 Offset) {
-	u32 ret;
-	BTD5API::mem->Read((u32)BloonTypeAddr + Offset, &ret);
-	return ret;
-}
-
-void BloonType::WriteOffsetField(u32 Offset, u8* bytes) {
-	BTD5API::mem->Write((u32)(BloonTypeAddr) + Offset, (u32*)bytes);
-}
 
 BloonTypes BloonType::GetType() {
 	return (BloonTypes)ReadOffsetField(OFF_FIELD_TYPE);
 }
 
 void BloonType::SetType(BloonTypes type) {
-
+	LOGW("WARNING: Set type not implemented yet!");
 }
 
 String BloonType::GetNameFromType(BloonTypes bloon) {
@@ -110,26 +95,10 @@ String BloonType::GetNameFromType(BloonTypes bloon) {
 // Bloon
 //
 
-
-Bloon::Bloon(u32 PtrToBloon) {
-	BloonAddr = PtrToBloon;
-}
-
-
-u32 Bloon::ReadOffsetField(u32 Offset) {
-	u32 ret;
-	BTD5API::mem->Read((u32)BloonAddr + Offset, &ret);
-	return ret;
-}
-
-void Bloon::WriteOffsetField(u32 Offset, u8* bytes) {
-	BTD5API::mem->Write((u32)(BloonAddr)+Offset, (u32*)bytes);
-}
-
 // 0xA0
 
 void Bloon::SetSpriteX(float x) {
-	WriteOffsetField(OFF_FIELD_SPRITEX, (u8*)&x);
+	WriteOffsetField(OFF_FIELD_SPRITEX, (u32*)&x);
 }
 
 float Bloon::GetSpriteX(){
@@ -141,7 +110,7 @@ float Bloon::GetSpriteX(){
 // 0xA4
 
 void Bloon::SetSpriteY(float y) {
-	WriteOffsetField(OFF_FIELD_SPRITEY, (u8*)&y);
+	WriteOffsetField(OFF_FIELD_SPRITEY, (u32*)&y);
 }
 
 float Bloon::GetSpriteY() {
@@ -165,7 +134,7 @@ BloonType Bloon::GetBloonType() {
 // 0x26C
 
 void Bloon::SetDistanceOnTrack(float dist) {
-	WriteOffsetField(OFF_FIELD_DISTANCE, (u8*)&dist);
+	WriteOffsetField(OFF_FIELD_DISTANCE, (u32*)&dist);
 }
 
 float Bloon::GetDistanceOnTrack() {
@@ -178,7 +147,7 @@ float Bloon::GetDistanceOnTrack() {
 // 0x278
 
 void Bloon::SetPosX(float x) {
-	WriteOffsetField(OFF_FIELD_SPRITEX, (u8*)&x);
+	WriteOffsetField(OFF_FIELD_SPRITEX, (u32*)&x);
 }
 
 float Bloon::GetPosX() {
@@ -190,7 +159,7 @@ float Bloon::GetPosX() {
 // 0x26C
 
 void Bloon::SetPosY(float y) {
-	WriteOffsetField(OFF_FIELD_SPRITEY, (u8*)&y);
+	WriteOffsetField(OFF_FIELD_SPRITEY, (u32*)&y);
 }
 
 float Bloon::GetPosY() {

@@ -4,3 +4,4 @@
 #include "MappedPtrVec.hpp"
 #include "Pe.hpp"
 #include "Types.hpp"
+#include "MappedStruct.hpp"

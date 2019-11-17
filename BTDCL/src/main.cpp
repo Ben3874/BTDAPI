@@ -33,18 +33,17 @@ void TestBTD5() {
 	Btd5API.Initialise(&BTD5);
 
 	for (;;) {
-		for (int i = 0; i < Btd5API.BloonList.size(); i++) {
+		for (u32 i = 0; i < Btd5API.BloonList.size(); i++) {
 			Bloon bloon = Btd5API.BloonList[i];
 			String type = bloon.bloonType.GetNameFromType(bloon.bloonType.type);
-			std::cout << "Dumping information about bloon " << i + 1 << ":\n"
-				<< "Address: " << std::hex << bloon.BloonAddr << std::dec << "\n"
-				<< "Scale X: " << bloon.spriteX << "\n"
-				<< "Scale Y: " << bloon.spriteY << "\n"
-				<< "Distance on track: " << bloon.Distance << "\n"
-				<< "Pos X: " << bloon.PosX << "\n"
-				<< "Pos Y: " << bloon.PosY << "\n"
-				//<< "Bloon Type: " << type << "\n"
-				;
+			std::cout << "Dumping information about bloon " << i + 1 << ":\n";
+			//std::cout << "Address: " << std::hex << bloon. << std::dec << "\n";
+			std::cout << "Scale X: " << bloon.spriteX << "\n";
+			std::cout << "Scale Y: " << bloon.spriteY << "\n";
+			std::cout << "Distance on track: " << bloon.Distance << "\n";
+			std::cout << "Pos X: " << bloon.PosX << "\n";
+			std::cout << "Pos Y: " << bloon.PosY << "\n";
+			std::cout << "Bloon Type: " << type << "\n";
 
 			Btd5API.BloonList[i].spriteX += 0.1f;
 		}

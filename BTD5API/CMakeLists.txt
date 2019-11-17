@@ -24,11 +24,12 @@ target_sources(${PROJECT_NAME}
 	include/${PROJECT_NAME}/api.hpp
 	include/${PROJECT_NAME}/base.hpp
 	include/${PROJECT_NAME}/bloons.hpp
+	include/${PROJECT_NAME}/Global.hpp
 
 	PRIVATE
-	src/dummy.cpp
 	src/bloons.cpp
 	src/base.cpp
+	src/Global.cpp
 )
 
 target_include_directories(${PROJECT_NAME}

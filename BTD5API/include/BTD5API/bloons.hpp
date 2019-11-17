@@ -1,9 +1,7 @@
 #pragma once
 #include "core/core.hpp"
 #include "Memory/memory.hpp"
-
-#define OFF_STRUCT(name, members) union { members } name
-
+#include "Global.hpp"
 
 
 enum BloonTypes : u32
@@ -28,23 +26,17 @@ enum BloonTypes : u32
 	// TODO: Boss bloons
 };
 
-class BloonType {
-	
+class BloonType : Btd5Struct {
+private:
+
 	enum Offsets {
 		OFF_FIELD_TYPE = 0x28,
 		OFF_FIELD_BLOON_FILE = 0x10,
 	};
 
-private:
-
-	DLL_PRIVATE inline u32 ReadOffsetField(u32 Offset);
-	DLL_PRIVATE inline void WriteOffsetField(u32 Offset, u8* bytes);
-
 public:
 
-	u32 BloonTypeAddr;
-
-	DLL_PUBLIC BloonType(u32 PtrToBloontype);
+	BloonType(u32 Addr) : Btd5Struct(Addr, MEMNAME) {};
 
 	DLL_PUBLIC BloonTypes GetType();
 	DLL_PUBLIC void SetType(BloonTypes type);
@@ -58,20 +50,20 @@ public:
 
 
 
+class Bloon : Btd5Struct {
 
+private:
 
-class Bloon {
-
-	//
-	// Known Offets for Bloons:
-	//
-	// 0xA0		- SpriteX
-	// 0xA4		- SpriteY
-	// 0x1FC	- BloonType
-	// 0x26C	- Distance on track
-	// 0x278	- PosX
-	// 0x27C	- PosY
-	//
+//
+// Known Offets for Bloons:
+//
+// 0xA0		- SpriteX
+// 0xA4		- SpriteY
+// 0x1FC	- BloonType
+// 0x26C	- Distance on track
+// 0x278	- PosX
+// 0x27C	- PosY
+//
 
 	enum Offsets {
 		OFF_FIELD_SPRITEX = 0xA0,
@@ -82,17 +74,9 @@ class Bloon {
 		OFF_FIELD_POSY = 0x27c
 	};
 
-private:
-
-	DLL_PRIVATE inline u32 ReadOffsetField(u32 Offset);
-	DLL_PRIVATE inline void WriteOffsetField(u32 Offset, u8* bytes);
-
 public:
 
-	// READONLY. DO NOT SET!
-	u32 BloonAddr;
-
-	DLL_PUBLIC Bloon(u32 PtrToBloon);
+	Bloon(u32 Addr) : Btd5Struct(Addr, MEMNAME) {};
 
 	DLL_PUBLIC void SetSpriteX(float x);
 	DLL_PUBLIC float GetSpriteX();

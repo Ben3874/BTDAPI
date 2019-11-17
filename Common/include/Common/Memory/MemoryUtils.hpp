@@ -1,10 +1,6 @@
 #pragma once
 #include "Core/core.hpp"
 #include "LoadMemory.hpp"
-#include <deque>
-#include <list>
-#include <forward_list>
-#include <array>
 
 
 // Bytes that dont represent a type (typeless)
@@ -49,10 +45,6 @@ public:
 
 	DLL_PUBLIC TL32 MultiLevelPtr(u32 BaseAddr, std::vector<u32> Offsets);
 	DLL_PUBLIC TL64 MultiLevelPtr(u64 BaseAddr, std::vector<u64> Offsets);
-
-	void Test() {
-		LoadLibrary("");
-	};
 
 	
 
